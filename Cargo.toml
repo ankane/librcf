@@ -16,3 +16,8 @@ rcf = { git = "https://github.com/ankane/random-cut-forest-by-aws", branch = "li
 [lib]
 name = "rcf"
 crate-type = ["cdylib"]
+
+[profile.release]
+codegen-units = 1
+lto = true
+strip = true
