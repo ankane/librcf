@@ -50,5 +50,5 @@ pub unsafe extern "C" fn rcf_score(forest: *mut rcf_forest, point: *const f32) -
 
 #[no_mangle]
 pub unsafe extern "C" fn rcf_free(forest: *mut rcf_forest) {
-    Box::from_raw(forest);
+    drop(Box::from_raw(forest));
 }
