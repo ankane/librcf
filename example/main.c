@@ -19,7 +19,7 @@ int main() {
         }
 
         double score = rcf_score(forest, point);
-        printf("score = %f\n", score);
+        printf("point = %d, score = %f\n", i, score);
         rcf_update(forest, point);
     }
 
