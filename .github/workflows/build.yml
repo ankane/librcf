@@ -5,9 +5,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
+    - uses: actions/cache@v3
+      with:
+        path: |
+          ~/.cargo/registry
+          ~/.cargo/git
+          target
+        key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
     - uses: actions-rs/toolchain@v1
       with:
         toolchain: stable
-    - run: cargo build --release
-    - run: gcc -Wall -Wextra -Werror -Iinclude -Ltarget/release -o example/main example/main.c -lrcf
-    - run: example/main
+    - run: cargo test --release
