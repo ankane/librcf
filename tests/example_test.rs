@@ -3,7 +3,6 @@ use std::process::Command;
 
 #[test]
 fn test_example() {
-    let target_path = "target/release";
     Command::new("gcc")
         .args([
             "-Wall",
@@ -13,8 +12,8 @@ fn test_example() {
             "example/main",
             "example/main.c",
             "-Iinclude",
-            &*format!("-L{}", target_path),
-            &*format!("-Wl,-rpath,{}", target_path),
+            "-Ltarget/debug",
+            "-Wl,-rpath,target/debug",
             "-lrcf",
         ])
         .output()

@@ -102,7 +102,8 @@ To get started with development:
 ```sh
 git clone https://github.com/ankane/librcf.git
 cd librcf
-cargo test --release
+cargo build
+cargo test
 ```
 
 To generate headers:
