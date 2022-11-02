@@ -1,0 +1,19 @@
+language = "C"
+cpp_compat = true
+pragma_once = true
+sys_includes = ["stddef.h"]
+no_includes = true
+
+after_includes = """
+
+#ifdef _WIN32
+#define RCF_API __declspec(dllimport)
+#else
+#define RCF_API
+#endif"""
+
+style = "type"
+usize_is_size_t = true
+
+[fn]
+prefix = "RCF_API"

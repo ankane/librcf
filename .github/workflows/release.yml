@@ -1,0 +1,60 @@
+name: release
+on: workflow_dispatch
+jobs:
+  release:
+    env:
+      ARTIFACT_NAME: librcf
+      ARTIFACT_VERSION: 0.1.0
+      ARTIFACT_EXT: ${{ startsWith(matrix.os, 'windows') && 'zip' || 'tar.gz' }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+        - target: x86_64-unknown-linux-gnu
+          os: ubuntu-latest
+          lib-ext: so
+        - target: aarch64-unknown-linux-gnu
+          os: ubuntu-latest
+          lib-ext: so
+        - target: x86_64-apple-darwin
+          os: macos-11
+          lib-ext: dylib
+        - target: aarch64-apple-darwin
+          os: macos-11
+          lib-ext: dylib
+        - target: x86_64-pc-windows-msvc
+          os: windows-latest
+          lib-ext: dll
+    runs-on: ${{ matrix.os }}
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions-rs/toolchain@v1
+      with:
+        toolchain: stable
+        target: ${{ matrix.target }}
+
+    - run: cargo build --release --target ${{ matrix.target }}
+    - run: cargo install cargo-3pl
+
+    # windows cp only supports one wildcard argument
+    - run: |
+        mkdir dist
+        mkdir dist/example
+        mkdir dist/include
+        mkdir dist/lib
+        cp example/* dist/example
+        cp include/* dist/include
+        cp target/${{ matrix.target }}/release/*.${{ matrix.lib-ext }} dist/lib
+        cp README.md dist/
+        cp *LICENSE* dist/
+        cargo 3pl > dist/THIRD-PARTY-LICENSES
+
+    - if: ${{ env.ARTIFACT_EXT == 'tar.gz' }}
+      run: cd dist && tar czf ../${{ env.ARTIFACT_NAME }}-${{ env.ARTIFACT_VERSION }}-${{ matrix.target }}.tar.gz *
+    - if: ${{ env.ARTIFACT_EXT == 'zip' }}
+      run: cd dist && Compress-Archive -DestinationPath ../${{ env.ARTIFACT_NAME }}-${{ env.ARTIFACT_VERSION }}-${{ matrix.target }}.zip -Path *
+
+    - uses: actions/upload-artifact@v3
+      with:
+        name: ${{ env.ARTIFACT_NAME }}-${{ env.ARTIFACT_VERSION }}-${{ matrix.target }}.${{ env.ARTIFACT_EXT }}
+        path: ${{ env.ARTIFACT_NAME }}-${{ env.ARTIFACT_VERSION }}-${{ matrix.target }}.${{ env.ARTIFACT_EXT }}

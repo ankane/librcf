@@ -1,0 +1,18 @@
+[package]
+name = "librcf"
+version = "0.1.0"
+description = "Random Cut Forest anomaly detection for C/C++"
+repository = "https://github.com/ankane/librcf"
+license = "Apache-2.0"
+authors = ["Andrew Kane <andrew@ankane.org>"]
+edition = "2021"
+readme = "README.md"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+rcf = { git = "https://github.com/ankane/random-cut-forest-by-aws", branch = "librcf" }
+
+[lib]
+name = "rcf"
+crate-type = ["cdylib"]
