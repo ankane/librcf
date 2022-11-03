@@ -2,6 +2,8 @@
 
 [Random Cut Forest](https://github.com/aws/random-cut-forest-by-aws) (RCF) anomaly detection for C/C++
 
+:evergreen_tree: Also available for [Ruby](https://github.com/ankane/random-cut-forest-ruby) and [PHP](https://github.com/ankane/random-cut-forest-php)
+
 [![Build Status](https://github.com/ankane/librcf/workflows/build/badge.svg?branch=master)](https://github.com/ankane/librcf/actions)
 
 ## Installation
