@@ -84,6 +84,10 @@ int main() {
 }
 ```
 
+## Reference
+
+- [Robust Random Cut Forest Based Anomaly Detection On Streams](https://proceedings.mlr.press/v48/guha16.pdf)
+
 ## History
 
 View the [changelog](CHANGELOG.md)
