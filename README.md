@@ -34,6 +34,12 @@ Create a forest with 3 dimensions
 rcf_forest *forest = rcf_create(3);
 ```
 
+Set parameters [unreleased]
+
+```c
+rcf_set_param(forest, "number_of_trees", "100");
+```
+
 Score a point
 
 ```c
@@ -67,6 +73,7 @@ float randf() {
 
 int main() {
     rcf_forest *forest = rcf_create(3);
+    rcf_set_param(forest, "number_of_trees", "100");
 
     for (int i = 0; i < 200; i++) {
         float point[] = {randf(), randf(), randf()};
@@ -85,6 +92,15 @@ int main() {
     return 0;
 }
 ```
+
+## Parameters
+
+Name | Description | Default Value
+--- | --- | ---
+`shingle_size` | Shingle size to use | 1
+`sample_size` | Points to keep in sample for each tree | 256
+`number_of_trees` | Number of trees to use in the forest | 100
+`random_seed` | Random seed to use | 42
 
 ## Reference
 

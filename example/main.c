@@ -9,6 +9,7 @@ float randf() {
 
 int main() {
     rcf_forest *forest = rcf_create(3);
+    rcf_set_param(forest, "number_of_trees", "100");
 
     for (int i = 0; i < 200; i++) {
         float point[] = {randf(), randf(), randf()};
