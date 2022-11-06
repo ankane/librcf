@@ -103,6 +103,14 @@ Name | Description | Default Value
 `random_seed` | Random seed to use | 42
 `parallel` | Enable parallel execution | false
 
+Parameter values should always be passed as strings.
+
+```c
+rcf_set_param(forest, "parallel", "true");
+```
+
+`rcf_set_params` returns zero if successful and nonzero if the name or value is invalid or if it’s called after `rcf_score` or `rcf_update`.
+
 ## Reference
 
 - [Robust Random Cut Forest Based Anomaly Detection On Streams](https://proceedings.mlr.press/v48/guha16.pdf)
