@@ -109,7 +109,7 @@ Parameter values should always be passed as strings.
 rcf_set_param(forest, "parallel", "true");
 ```
 
-`rcf_set_params` returns zero if successful and nonzero if the name or value is invalid or if it’s called after `rcf_score` or `rcf_update`.
+`rcf_set_param` returns zero if successful and nonzero if the name or value is invalid or if it’s called after `rcf_score` or `rcf_update`.
 
 ## Reference
 
