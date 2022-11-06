@@ -16,8 +16,9 @@ fn test_example() {
             "-Wl,-rpath,target/debug",
             "-lrcf",
         ])
-        .output()
+        .status()
         .expect("failed to execute process");
+
     let output = Command::new("example/main")
         .output()
         .expect("failed to execute process");
