@@ -106,6 +106,7 @@ Name | Description | Default Value
 Parameter values should always be passed as strings.
 
 ```c
+rcf_set_param(forest, "sample_size", "256");
 rcf_set_param(forest, "parallel", "true");
 ```
 
