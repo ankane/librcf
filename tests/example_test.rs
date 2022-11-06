@@ -3,7 +3,7 @@ use std::process::Command;
 
 #[test]
 fn test_example() {
-    Command::new("gcc")
+    let status = Command::new("gcc")
         .args([
             "-Wall",
             "-Wextra",
@@ -18,6 +18,7 @@ fn test_example() {
         ])
         .status()
         .expect("failed to execute process");
+    assert!(status.success());
 
     let output = Command::new("example/main")
         .output()
