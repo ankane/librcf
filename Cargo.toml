@@ -1,6 +1,6 @@
 [package]
 name = "librcf"
-version = "0.1.0"
+version = "0.1.1"
 description = "Random Cut Forest anomaly detection for C/C++"
 repository = "https://github.com/ankane/librcf"
 license = "Apache-2.0"
