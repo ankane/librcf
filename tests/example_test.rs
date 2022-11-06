@@ -3,7 +3,7 @@ use std::process::Command;
 
 #[test]
 fn test_example() {
-    let status = Command::new("gcc")
+    let output = Command::new("gcc")
         .args([
             "-Wall",
             "-Wextra",
@@ -16,13 +16,14 @@ fn test_example() {
             "-Wl,-rpath,target/debug",
             "-lrcf",
         ])
-        .status()
+        .output()
         .expect("failed to execute process");
-    assert!(status.success());
+    assert!(output.status.success());
 
     let output = Command::new("example/main")
         .output()
         .expect("failed to execute process");
+    assert!(output.status.success());
     io::stdout().write_all(&output.stdout).unwrap();
     io::stderr().write_all(&output.stderr).unwrap();
 }
