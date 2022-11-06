@@ -101,6 +101,7 @@ Name | Description | Default Value
 `sample_size` | Points to keep in sample for each tree | 256
 `number_of_trees` | Number of trees to use in the forest | 100
 `random_seed` | Random seed to use | 42
+`parallel` | Enable parallel execution | false
 
 ## Reference
 

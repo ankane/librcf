@@ -10,13 +10,13 @@ pub struct rcf_forest {
     sample_size: usize,
     number_of_trees: usize,
     random_seed: u64,
+    parallel: bool,
 }
 
 unsafe fn ensure_forest(forest: *mut rcf_forest) {
     if let None = (*forest).rcf {
         // TODO make parameters
         let store_attributes = false;
-        let parallel_enabled = false;
         let internal_shingling = false;
         let internal_rotation = false;
         let time_decay = 0.0;
@@ -30,7 +30,7 @@ unsafe fn ensure_forest(forest: *mut rcf_forest) {
             (*forest).number_of_trees,
             (*forest).random_seed,
             store_attributes,
-            parallel_enabled,
+            (*forest).parallel,
             internal_shingling,
             internal_rotation,
             time_decay,
@@ -49,6 +49,7 @@ pub extern "C" fn rcf_create(dimensions: usize) -> *mut rcf_forest {
         sample_size: 256,
         number_of_trees: 100,
         random_seed: 42,
+        parallel: false,
     };
     Box::into_raw(Box::new(forest))
 }
@@ -72,19 +73,21 @@ pub unsafe extern "C" fn rcf_set_param(forest: *mut rcf_forest, param: *const c_
     let param = param.unwrap();
     let value = value.unwrap();
 
-    let result = if param == "shingle_size" {
-        value.parse().map(|v| (*forest).shingle_size = v)
+    let success = if param == "shingle_size" {
+        value.parse().map(|v| (*forest).shingle_size = v).is_ok()
     } else if param == "sample_size" {
-        value.parse().map(|v| (*forest).sample_size = v)
+        value.parse().map(|v| (*forest).sample_size = v).is_ok()
     } else if param == "number_of_trees" {
-        value.parse().map(|v| (*forest).number_of_trees = v)
+        value.parse().map(|v| (*forest).number_of_trees = v).is_ok()
     } else if param == "random_seed" {
-        value.parse().map(|v| (*forest).random_seed = v)
+        value.parse().map(|v| (*forest).random_seed = v).is_ok()
+    } else if param == "parallel" {
+        value.parse().map(|v| (*forest).parallel = v).is_ok()
     } else {
         return -1; // bad param
     };
 
-    if result.is_ok() {
+    if success {
         0
     } else {
         -1 // bad value
