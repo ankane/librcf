@@ -1,3 +1,5 @@
+#![allow(clippy::missing_safety_doc)]
+
 use rcflib::rcf::{create_rcf, RCF};
 use std::ffi::{c_char, c_int, CStr};
 use std::slice;
@@ -14,7 +16,7 @@ pub struct rcf_forest {
 }
 
 unsafe fn ensure_forest(forest: *mut rcf_forest) {
-    if let None = (*forest).rcf {
+    if (*forest).rcf.is_none() {
         // TODO make parameters
         let store_attributes = false;
         let internal_shingling = false;
