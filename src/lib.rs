@@ -57,7 +57,11 @@ pub extern "C" fn rcf_create(dimensions: usize) -> *mut rcf_forest {
 }
 
 #[no_mangle]
-pub unsafe extern "C" fn rcf_set_param(forest: *mut rcf_forest, param: *const c_char, value: *const c_char) -> c_int {
+pub unsafe extern "C" fn rcf_set_param(
+    forest: *mut rcf_forest,
+    param: *const c_char,
+    value: *const c_char,
+) -> c_int {
     if (*forest).rcf.is_some() {
         return -1; // bad forest
     }
@@ -100,7 +104,12 @@ pub unsafe extern "C" fn rcf_set_param(forest: *mut rcf_forest, param: *const c_
 pub unsafe extern "C" fn rcf_update(forest: *mut rcf_forest, point: *const f32) {
     ensure_forest(forest);
     let slice = slice::from_raw_parts(point, (*forest).dimensions);
-    (*forest).rcf.as_deref_mut().unwrap().update(slice, 0).unwrap();
+    (*forest)
+        .rcf
+        .as_deref_mut()
+        .unwrap()
+        .update(slice, 0)
+        .unwrap();
 }
 
 #[no_mangle]
