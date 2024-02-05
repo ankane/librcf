@@ -1,6 +1,6 @@
 #![allow(clippy::missing_safety_doc)]
 
-use rcflib::rcf::{create_rcf, RCF};
+use rcflib::rcf::{RCFBuilder, RCFOptionsBuilder, RCF};
 use std::ffi::{c_char, c_int, CStr};
 use std::slice;
 
@@ -25,20 +25,24 @@ unsafe fn ensure_forest(forest: *mut rcf_forest) {
         let initial_accept_fraction = 1.0;
         let bounding_box_cache_fraction = 1.0;
 
-        (*forest).rcf = Some(create_rcf(
-            (*forest).dimensions,
-            (*forest).shingle_size,
-            (*forest).sample_size,
-            (*forest).number_of_trees,
-            (*forest).random_seed,
-            store_attributes,
-            (*forest).parallel,
-            internal_shingling,
-            internal_rotation,
-            time_decay,
-            initial_accept_fraction,
-            bounding_box_cache_fraction,
-        ));
+        (*forest).rcf = Some(
+            RCFBuilder::<u64, u64>::new(
+                (*forest).dimensions / (*forest).shingle_size,
+                (*forest).shingle_size,
+            )
+            .tree_capacity((*forest).sample_size)
+            .number_of_trees((*forest).number_of_trees)
+            .random_seed((*forest).random_seed)
+            .store_attributes(store_attributes)
+            .parallel_enabled((*forest).parallel)
+            .internal_shingling(internal_shingling)
+            .internal_rotation(internal_rotation)
+            .time_decay(time_decay)
+            .initial_accept_fraction(initial_accept_fraction)
+            .bounding_box_cache_fraction(bounding_box_cache_fraction)
+            .build_default()
+            .unwrap(),
+        );
     }
 }
 
