@@ -4,7 +4,7 @@
 
 :evergreen_tree: Also available for [Ruby](https://github.com/ankane/random-cut-forest-ruby) and [PHP](https://github.com/ankane/random-cut-forest-php), and as a [CLI](https://github.com/ankane/rcf-cli)
 
-[![Build Status](https://github.com/ankane/librcf/workflows/build/badge.svg?branch=master)](https://github.com/ankane/librcf/actions)
+[![Build Status](https://github.com/ankane/librcf/actions/workflows/build.yml/badge.svg)](https://github.com/ankane/librcf/actions)
 
 ## Installation
 
