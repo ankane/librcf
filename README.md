@@ -10,9 +10,9 @@
 
 Download the latest version:
 
-- Linux - [x86_64](https://github.com/ankane/librcf/releases/download/v0.1.1/librcf-0.1.1-x86_64-unknown-linux-gnu.tar.gz) or [arm64](https://github.com/ankane/librcf/releases/download/v0.1.1/librcf-0.1.1-aarch64-unknown-linux-gnu.tar.gz)
-- Mac - [x86_64](https://github.com/ankane/librcf/releases/download/v0.1.1/librcf-0.1.1-x86_64-apple-darwin.tar.gz) or [arm64](https://github.com/ankane/librcf/releases/download/v0.1.1/librcf-0.1.1-aarch64-apple-darwin.tar.gz)
-- Windows - [x86_64](https://github.com/ankane/librcf/releases/download/v0.1.1/librcf-0.1.1-x86_64-pc-windows-msvc.zip)
+- Linux - [x86_64](https://github.com/ankane/librcf/releases/download/v0.2.0/librcf-0.2.0-x86_64-unknown-linux-gnu.tar.gz) or [arm64](https://github.com/ankane/librcf/releases/download/v0.2.0/librcf-0.2.0-aarch64-unknown-linux-gnu.tar.gz)
+- Mac - [x86_64](https://github.com/ankane/librcf/releases/download/v0.2.0/librcf-0.2.0-x86_64-apple-darwin.tar.gz) or [arm64](https://github.com/ankane/librcf/releases/download/v0.2.0/librcf-0.2.0-aarch64-apple-darwin.tar.gz)
+- Windows - [x86_64](https://github.com/ankane/librcf/releases/download/v0.2.0/librcf-0.2.0-x86_64-pc-windows-msvc.zip)
 
 You can also install it with Homebrew:
 

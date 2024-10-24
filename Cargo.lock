@@ -72,7 +72,7 @@ checksum = "fc7fcc620a3bff7cdd7a365be3376c97191aeaccc2a603e600951e452615bf89"
 
 [[package]]
 name = "librcf"
-version = "0.1.1"
+version = "0.2.0"
 dependencies = [
  "rcf",
 ]

@@ -1,4 +1,4 @@
-## 0.2.0 (unreleased)
+## 0.2.0 (2024-10-23)
 
 - Updated RCF to 4.0.0
 
