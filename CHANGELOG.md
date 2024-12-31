@@ -1,3 +1,7 @@
+## 0.2.1 (unreleased)
+
+- Fixed error with Ubuntu 20.04
+
 ## 0.2.0 (2024-10-23)
 
 - Updated RCF to 4.0.0
