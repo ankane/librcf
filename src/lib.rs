@@ -1,8 +1,12 @@
 #![allow(clippy::missing_safety_doc)]
+#![no_std]
 
+use alloc::boxed::Box;
+use core::ffi::{c_char, c_int, CStr};
+use core::slice;
 use rcflib::rcf::{RCFBuilder, RCFOptionsBuilder, RCF};
-use std::ffi::{c_char, c_int, CStr};
-use std::slice;
+
+extern crate alloc;
 
 #[allow(non_camel_case_types)]
 pub struct rcf_forest {
